@@ -68,6 +68,7 @@ class AddDefaultGroup
     public function changeGroup(UserEmailWasChanged $event) {
         if($this->cnuGroup && preg_match('/'.$this->cnuGroup_regx.'/',$event->user->email)) {
             $event->user->groups()->attach($this->cnuGroup);
+            $event->user->groups()->detach($this->defaultGroup);
         }elseif($event->user->groups()->detach($this->cnuGroup)){//成功踢出认证组
             $event->user->groups()->attach($this->defaultGroup);//加入普通组
         }
