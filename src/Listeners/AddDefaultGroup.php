@@ -32,6 +32,7 @@ class AddDefaultGroup
         $this->defaultGroup = (int) $this->settings->get('hyn.default_group.group', Group::MEMBER_ID);
         $this->cnuGroup = (int) $this->settings->get('hyn.cnu_group.group', Group::MEMBER_ID);
         $this->cnuGroup_regx = $this->settings->get('hyn.cnuGroup_regx', '@(mail\.)?cnu\.edu\.cn$');
+        $this->cnuGroup_regx = preg_quote($this->cnuGroup_regx,'/');
     }
 
     /**
